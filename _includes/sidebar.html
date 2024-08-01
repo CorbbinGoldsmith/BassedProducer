@@ -1,6 +1,9 @@
 <div class="sidebar">
 	<h2>See also:</h2>
 
+	<div id="random-posts">
+	    <div id="posts-list" class="blog-items"></div>
+	</div>
 
 
 	<h2>Accounts:</h2>
@@ -8,10 +11,83 @@
 	{% include accounts.html %}
 </div>
 
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('/posts.json')
+    .then(response => response.json())
+    .then(data => {
+        let posts = data; 
+        let randomPosts = [];
+
+        // Ensure there are enough posts to pick from
+        const maxPosts = posts.length < 5 ? posts.length : 5;
+        while (randomPosts.length < maxPosts) {
+            let randomIndex = Math.floor(Math.random() * posts.length);
+            let randomPost = posts[randomIndex];
+
+            // Check if the post is already added to avoid duplicates
+            if (!randomPosts.includes(randomPost)) {
+                randomPosts.push(randomPost);
+            }
+        }
+
+        // Add posts to the sidebar
+        const postsList = document.getElementById('posts-list');
+		randomPosts.forEach(post => {
+		    postsList.insertAdjacentHTML('beforeend', `
+		        <a class="blog-item" href="${post.url}">
+		            <h3>${post.title}</h3>
+		            <small>${post.date}</small>
+		            <p>${post.description}</p>
+		        </a>
+		    `);
+		});
+    })
+    .catch(error => console.error('Error loading the posts:', error));
+});
+
+</script>
+
+
+
+
 <style type="text/css">
 
 .sidebar {
 	min-width: 300px;
+}
+
+.blog-items {
+	display: grid;
+	gap: 5px;
+	padding-bottom: 20px;
+}
+
+.blog-item {
+	background: #eee;
+	padding: 5px;
+	color: black;
+}
+.blog-item:visited {
+	color: black;
+}
+
+.blog-item:hover {
+	text-decoration: none;
+	color: black;
+	background: #f3f3f3;
+}
+
+.blog-item small {
+	text-transform: uppercase;
+	font-size: .7rem;
+}
+
+.blog-item > h3,p {
+	margin: 0px;
 }
 
 </style>

@@ -1,0 +1,80 @@
+<div class="promotion">
+
+  <div class="promo-content">
+    <h3>{{ include.title }}</h3>
+    <p>{{ include.description }}</p>
+    <a href="{{ include.url }}">
+    	<div class="button">
+	    	<div>
+				{% if include.icon %}
+					<img src="/assets/img/{{ include.icon }}.svg" alt="Icon" class="promo-icon">
+				{% endif %}
+	    	</div>
+	    	<div>
+				{{include.CTA}}
+	    	</div>
+    	</div>
+    </a>
+  </div>
+
+  {% if include.image %}
+    <div class="promo-image">
+      <img src="{{ include.image }}" alt="Promotional Image">
+    </div>
+  {% endif %}
+</div>
+
+<style type="text/css">
+
+.promo-content a .button{
+	text-decoration: none;
+	border: 1px solid black;
+	padding: .5rem;
+	display: flex;
+	gap: .5rem;
+	align-items: center;
+}
+
+.promo-content a:hover .button{
+	background: #ddd;
+}
+
+.svg-icon {
+    fill: currentColor; /* Ensures the SVG's color matches the text color of its container */
+}
+
+.promo-content a {
+	display: inline-block;
+	width: auto;
+}
+
+.promo-content a, a:hover, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.promotion {
+  display: flex;
+  background: #eee;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.promo-content {
+  justify-items: left;
+  padding: 0 20px;
+}
+
+.promo-image img {
+  width: 100%;
+  max-width: 256px; /* Default to desktop size */
+}
+
+@media (max-width: 1200px) { /* Adjust breakpoint as necessary */
+  .promo-image img {
+    max-width: 128px; /* Mobile size */
+  }
+}
+
+
+</style>
