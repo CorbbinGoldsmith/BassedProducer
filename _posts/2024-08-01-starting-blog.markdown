@@ -105,5 +105,6 @@ $4 is less than a burger in most places, nowadays. Let alone a beer. For just $4
 	title="Special Offer" 
 	description="Get a 20% discount on all products this month!" 
 	CTA="Get krUmUHr"
-	icon="gumroad" image="{{site.baseurl}}/assets/img/products/krumuhr.png" 
+	icon="gumroad" 
+	image="{{site.baseurl}}/assets/img/products/krumuhr.png" 
 	url="https://corbbin.gumroad.com/l/krumuhr" %}
