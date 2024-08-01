@@ -1,0 +1,71 @@
+{% assign sorted_messages = site.messages | sort: 'date' | reverse %}
+{% if sorted_messages.size > 0 %}
+  <div class="message">
+    <div class="message-content">
+      <p>{{ sorted_messages.first.content | markdownify }}</p>
+    </div>
+    <div class="buttons">
+      <a href="{{sorted_messages.first.link}}">{{sorted_messages.first.CTA}}</a>
+      <button>Dismiss</button>
+    </div>
+  </div>
+{% endif %}
+
+<style type="text/css">
+
+.message {
+  display: flex;
+  align-items: center;
+  font-size: .75rem;
+  background: #F8F3C7;
+  border-radius: .5rem;
+  padding: 10px 20px;
+}
+
+.message-content p {
+  margin: 0;
+}
+
+.message-content {
+  flex-grow: 1;
+}
+
+.message a {
+  text-decoration: none;
+  background: #e00;
+  border-radius: 10px;
+  padding: 5px 10px;
+  color: white;
+  border: 1px solid #e00;
+}
+
+.message:hover a {
+  background: #e44;
+}
+
+.message:hover a:hover {
+  background: #e00;
+  border: 1px solid #400;
+}
+
+@media screen and (max-width: 800px) {
+  .buttons {
+    display: grid;
+    gap: 5px;
+  }
+}
+
+
+
+.message button {
+  border-radius: 10px;
+  background: none;
+  font-family: inherit;
+  display: inline-block;
+  font-size: inherit;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #0003;
+}
+
+</style>
